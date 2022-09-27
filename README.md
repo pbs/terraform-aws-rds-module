@@ -7,7 +7,7 @@
 Use this URL for the source of the module. See the usage examples below for more details.
 
 ```hcl
-github.com/pbs/terraform-aws-rds-module?ref=0.0.1
+github.com/pbs/terraform-aws-rds-module?ref=x.y.z
 ```
 
 ### Alternative Installation Methods
@@ -28,7 +28,7 @@ Integrate this module like so:
 
 ```hcl
 module "rds" {
-  source = "github.com/pbs/terraform-aws-rds-module?ref=0.0.1"
+  source = "github.com/pbs/terraform-aws-rds-module?ref=x.y.z"
 
   # Required Parameters
   private_hosted_zone = "example.local"
@@ -47,7 +47,7 @@ module "rds" {
 
 If this repo is added as a subtree, then the version of the module should be close to the version shown here:
 
-`0.0.1`
+`x.y.z`
 
 Note, however that subtrees can be altered as desired within repositories.
 
@@ -111,7 +111,7 @@ No modules.
 | <a name="input_db_admin_password"></a> [db\_admin\_password](#input\_db\_admin\_password) | Admin password for the DB | `string` | `null` | no |
 | <a name="input_db_admin_username"></a> [db\_admin\_username](#input\_db\_admin\_username) | Admin username for the DB | `string` | `"admin"` | no |
 | <a name="input_deletion_protection"></a> [deletion\_protection](#input\_deletion\_protection) | Deletion protection | `bool` | `true` | no |
-| <a name="input_dns_evaluate_target_health"></a> [dns\_evaluate\_target\_health](#input\_dns\_evaluate\_target\_health) | (optional) evaluate health of endpoints by querying DNS records | `bool` | `true` | no |
+| <a name="input_dns_ttl"></a> [dns\_ttl](#input\_dns\_ttl) | TTL for DNS record | `number` | `300` | no |
 | <a name="input_enable_http_endpoint"></a> [enable\_http\_endpoint](#input\_enable\_http\_endpoint) | Enable HTTP endpoint | `bool` | `true` | no |
 | <a name="input_engine"></a> [engine](#input\_engine) | Engine to use for the DB | `string` | `"aurora-mysql"` | no |
 | <a name="input_engine_mode"></a> [engine\_mode](#input\_engine\_mode) | Engine mode of the RDS cluster | `string` | `"provisioned"` | no |
