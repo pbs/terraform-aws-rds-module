@@ -105,12 +105,6 @@ variable "skip_final_snapshot" {
   type        = bool
 }
 
-variable "dns_evaluate_target_health" {
-  description = "(optional) evaluate health of endpoints by querying DNS records"
-  default     = true
-  type        = bool
-}
-
 variable "private_hosted_zone" {
   description = "Private hosted zone for account"
   default     = null
@@ -121,6 +115,12 @@ variable "create_dns" {
   description = "Whether to create a DNS record"
   default     = true
   type        = bool
+}
+
+variable "dns_ttl" {
+  description = "TTL for DNS record"
+  default     = 300
+  type        = number
 }
 
 variable "instance_class" {
