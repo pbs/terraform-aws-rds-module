@@ -1,4 +1,4 @@
-# PBS TF rds module
+# PBS TF RDS Module
 
 ## Installation
 
