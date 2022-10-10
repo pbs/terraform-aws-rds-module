@@ -26,12 +26,14 @@ variable "db_admin_username" {
   description = "Admin username for the DB"
   default     = "admin"
   type        = string
+  sensitive   = true
 }
 
 variable "db_admin_password" {
   description = "Admin password for the DB"
   default     = null
   type        = string
+  sensitive   = true
 }
 
 variable "use_prefix" {
@@ -207,12 +209,14 @@ variable "proxy_username" {
   description = "Username for RDS proxy"
   default     = null
   type        = string
+  sensitive   = true
 }
 
 variable "proxy_password" {
   description = "Password for RDS proxy"
   default     = null
   type        = string
+  sensitive   = true
 }
 
 variable "proxy_iam_auth" {
