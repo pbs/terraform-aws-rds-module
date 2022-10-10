@@ -66,6 +66,10 @@ variable "availability_zones" {
   description = "Availability zones to be used by this RDS cluster"
   default     = null
   type        = list(string)
+  validation {
+    condition     = var.availability_zones == null || length(var.availability_zones != null ? var.availability_zones : []) == 3
+    error_message = "If you specify the availability zones for this module, you must specify exactly three. See https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/rds_cluster#availability_zones."
+  }
 }
 
 
