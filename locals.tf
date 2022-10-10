@@ -1,5 +1,6 @@
 locals {
-  name = var.name != null ? var.name : var.product
+  name       = var.name != null ? var.name : var.product
+  proxy_name = var.proxy_name != null ? var.proxy_name : local.name
 
   cluster_identifier        = var.use_prefix ? null : local.name
   cluster_identifier_prefix = var.use_prefix ? "${local.name}-" : null
@@ -11,7 +12,18 @@ locals {
 
   db_admin_password = var.db_admin_password != null ? var.db_admin_password : random_password.password.result
 
+  proxy_username = var.proxy_username != null ? var.proxy_username : var.db_admin_username
+  proxy_password = var.proxy_password != null ? var.proxy_password : local.db_admin_password
+
   engine_version = var.engine_version != null ? var.engine_version : data.aws_rds_engine_version.engine_version[0].version
+
+  sg_id = var.use_proxy ? aws_security_group.sg.id : aws_security_group.proxy_sg[0].id
+
+  dns_target        = var.use_proxy ? aws_db_proxy.proxy[0].endpoint : aws_rds_cluster.db.endpoint
+  reader_dns_target = var.use_proxy ? aws_db_proxy_endpoint.reader[0].endpoint : aws_rds_cluster.db.reader_endpoint
+
+  db_cluster_dns        = var.create_dns ? aws_route53_record.primary[0].fqdn : aws_rds_cluster.db.endpoint
+  db_cluster_reader_dns = var.create_dns ? aws_route53_record.reader[0].fqdn : aws_rds_cluster.db.reader_endpoint
 
   creator = "terraform"
 
