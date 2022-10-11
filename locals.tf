@@ -17,7 +17,7 @@ locals {
 
   engine_version = var.engine_version != null ? var.engine_version : data.aws_rds_engine_version.engine_version[0].version
 
-  sg_id = var.use_proxy ? aws_security_group.sg.id : aws_security_group.proxy_sg[0].id
+  sg_id = var.use_proxy ? aws_security_group.proxy_sg[0].id : aws_security_group.sg.id
 
   dns_target        = var.use_proxy ? aws_db_proxy.proxy[0].endpoint : aws_rds_cluster.db.endpoint
   reader_dns_target = var.use_proxy ? aws_db_proxy_endpoint.reader[0].endpoint : aws_rds_cluster.db.reader_endpoint

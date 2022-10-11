@@ -6,6 +6,7 @@ output "name" {
 output "db_admin_username" {
   description = "Admin Username for DB"
   value       = module.rds.db_admin_username
+  sensitive   = true
 }
 
 output "db_admin_password" {
@@ -22,4 +23,9 @@ output "db_cluster_dns" {
 output "sg_id" {
   description = "Security group ID for DB"
   value       = module.rds.sg_id
+}
+
+output "lambda_name" {
+  description = "Name of the Lambda"
+  value       = module.lambda.name
 }

@@ -43,6 +43,11 @@ resource "aws_db_proxy_endpoint" "reader" {
 resource "aws_db_proxy_default_target_group" "default_target_group" {
   count         = var.use_proxy ? 1 : 0
   db_proxy_name = aws_db_proxy.proxy[0].name
+
+  depends_on = [
+    aws_rds_cluster_instance.writer,
+    aws_rds_cluster_instance.reader,
+  ]
 }
 
 resource "aws_db_proxy_target" "target" {

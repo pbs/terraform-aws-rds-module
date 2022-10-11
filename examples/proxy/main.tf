@@ -3,8 +3,6 @@ module "rds" {
 
   private_hosted_zone = var.private_hosted_zone
 
-  use_prefix = false
-
   use_proxy = true
 
   # Just to make testing easier

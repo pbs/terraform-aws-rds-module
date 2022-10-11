@@ -5,5 +5,10 @@ set -euo pipefail
 IFS=$'\n\t'
 
 GIT_ROOT=$(git rev-parse --show-toplevel)
+
+if [[ ! -f "$GIT_ROOT"/examples/lambda/artifacts/handler.zip ]]; then
+	"$GIT_ROOT"/scripts/package.sh
+fi
+
 pushd "$GIT_ROOT"/tests >/dev/null || exit 1
-go test -timeout 30m -count=1 -parallel 10 ./...
+go test -timeout 60m -count=1 -parallel 10 ./...
