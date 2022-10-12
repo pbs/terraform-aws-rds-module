@@ -240,3 +240,15 @@ variable "egress_source_sg_id" {
   default     = null
   type        = string
 }
+
+variable "final_snapshot_identifier" {
+  description = "Final snapshot identifier"
+  default     = null
+  type        = string
+}
+
+variable "snapshot_identifier" {
+  description = "Snapshot identifier"
+  default     = null
+  type        = string
+}

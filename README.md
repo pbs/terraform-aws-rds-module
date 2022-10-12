@@ -133,6 +133,7 @@ No modules.
 | <a name="input_engine_mode"></a> [engine\_mode](#input\_engine\_mode) | Engine mode of the RDS cluster | `string` | `"provisioned"` | no |
 | <a name="input_engine_preferred_versions"></a> [engine\_preferred\_versions](#input\_engine\_preferred\_versions) | Engine preferred versions of the RDS cluster | `list(string)` | <pre>[<br>  "8.0.mysql_aurora.3.02.0"<br>]</pre> | no |
 | <a name="input_engine_version"></a> [engine\_version](#input\_engine\_version) | Engine version of the RDS cluster. If null, one will be looked up based on preferred versions. | `string` | `null` | no |
+| <a name="input_final_snapshot_identifier"></a> [final\_snapshot\_identifier](#input\_final\_snapshot\_identifier) | Final snapshot identifier | `string` | `null` | no |
 | <a name="input_instance_class"></a> [instance\_class](#input\_instance\_class) | Instance class | `string` | `"db.serverless"` | no |
 | <a name="input_max_capacity"></a> [max\_capacity](#input\_max\_capacity) | Maximum capacity for the cluster | `number` | `16` | no |
 | <a name="input_min_capacity"></a> [min\_capacity](#input\_min\_capacity) | Minimum capacity for the cluster | `number` | `0.5` | no |
@@ -153,6 +154,7 @@ No modules.
 | <a name="input_proxy_username"></a> [proxy\_username](#input\_proxy\_username) | Username for RDS proxy | `string` | `null` | no |
 | <a name="input_reader_count"></a> [reader\_count](#input\_reader\_count) | Number of reader instances to provision | `number` | `1` | no |
 | <a name="input_skip_final_snapshot"></a> [skip\_final\_snapshot](#input\_skip\_final\_snapshot) | Skip final snapshot | `bool` | `false` | no |
+| <a name="input_snapshot_identifier"></a> [snapshot\_identifier](#input\_snapshot\_identifier) | Snapshot identifier | `string` | `null` | no |
 | <a name="input_tags"></a> [tags](#input\_tags) | Extra tags | `map(string)` | `{}` | no |
 | <a name="input_use_prefix"></a> [use\_prefix](#input\_use\_prefix) | Create bucket with prefix instead of explicit name | `bool` | `true` | no |
 | <a name="input_use_proxy"></a> [use\_proxy](#input\_use\_proxy) | Use RDS proxy | `bool` | `false` | no |
