@@ -14,6 +14,8 @@ resource "aws_rds_cluster" "db" {
   preferred_backup_window      = var.preferred_backup_window
   preferred_maintenance_window = var.preferred_maintenance_window
   port                         = var.port
+  final_snapshot_identifier    = var.final_snapshot_identifier
+  snapshot_identifier          = var.snapshot_identifier
 
   deletion_protection = var.deletion_protection
   skip_final_snapshot = var.skip_final_snapshot
