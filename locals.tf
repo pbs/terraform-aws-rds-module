@@ -22,8 +22,8 @@ locals {
   dns_target        = var.use_proxy ? aws_db_proxy.proxy[0].endpoint : aws_rds_cluster.db.endpoint
   reader_dns_target = var.use_proxy ? aws_db_proxy_endpoint.reader[0].endpoint : aws_rds_cluster.db.reader_endpoint
 
-  db_cluster_dns        = var.create_dns ? aws_route53_record.primary[0].fqdn : aws_rds_cluster.db.endpoint
-  db_cluster_reader_dns = var.create_dns ? aws_route53_record.reader[0].fqdn : aws_rds_cluster.db.reader_endpoint
+  db_cluster_dns        = var.create_dns ? aws_route53_record.primary[0].fqdn : local.dns_target
+  db_cluster_reader_dns = var.create_dns ? aws_route53_record.reader[0].fqdn : local.reader_dns_target
 
   creator = "terraform"
 
