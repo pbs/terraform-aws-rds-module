@@ -6,6 +6,7 @@ output "name" {
 output "db_admin_username" {
   description = "Admin Username for DB"
   value       = module.rds.db_admin_username
+  sensitive   = true
 }
 
 output "db_admin_password" {

@@ -1,4 +1,4 @@
-# PBS TF rds module
+# PBS TF RDS Module
 
 ## Installation
 
@@ -18,11 +18,11 @@ More information can be found on these install methods and more in [the document
 
 This module provisions a basic RDS cluster.
 
-The only supported RDS type right now is Aurora Serverless.
-
 When the RDS cluster is created, a sensitive output variable `db_admin_password` is present that can be used to connect to the database as the user specified by `db_admin_user` (it's `admin` by default). It is highly recommended that this password be rotated out as quickly as possible after provisioning the database, and that the value is not stored or used afterwards. Use this admin user to create a new database user with restricted permissions to a single database for application connectivity.
 
-This module also assumes that connections are established through a private DNS record stored in the output variable `db_cluster_dns`. This makes it so that adjustments to the database can be made in a fashion that is transparent to application configurations.
+This module also assumes that connections are established through a private DNS record stored in the output variable `db_cluster_dns`. This makes it so that adjustments to the database can be made in a fashion that is transparent to application configurations. If you would like to disable this functionality, pass in `false` to the `create_dns` variable.
+
+Using the `use_proxy` variable will also provision an RDS proxy that can be used to proxy connections to the database. This is useful for applications that might spawn many short lived connections to the database. The proxy will pool those connections, protecting the cluster.
 
 Integrate this module like so:
 

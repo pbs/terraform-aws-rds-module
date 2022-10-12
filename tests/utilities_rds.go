@@ -5,6 +5,9 @@ import (
 	"os"
 	"testing"
 
+	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/session"
+	"github.com/aws/aws-sdk-go/service/lambda"
 	"github.com/gruntwork-io/terratest/modules/terraform"
 	"github.com/stretchr/testify/assert"
 )
@@ -55,4 +58,28 @@ func testRDS(t *testing.T, variant string) {
 	assert.NotEmpty(t, DBAdminPassword)
 	assert.NotEmpty(t, DBAdminUsername)
 	assert.NotEmpty(t, SGID)
+
+	if variant == "lambda" {
+		expectedLambdaName := expectedName
+		lambdaName := terraform.Output(t, terraformOptions, "lambda_name")
+		assert.Equal(t, expectedLambdaName, lambdaName)
+
+		session, err := session.NewSession()
+
+		if err != nil {
+			t.Fatalf("Failed to create AWS Session: %v", err)
+		}
+
+		lambdaSvc := lambda.New(session)
+
+		invokeOutput, err := lambdaSvc.Invoke(&lambda.InvokeInput{
+			FunctionName: aws.String(lambdaName),
+		})
+
+		if err != nil {
+			t.Fatalf("Failed to invoke Lambda: %v", err)
+		}
+
+		assert.Equal(t, int64(200), *invokeOutput.StatusCode)
+	}
 }

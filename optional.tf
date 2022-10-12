@@ -16,16 +16,24 @@ variable "private_subnets" {
   type        = list(string)
 }
 
+variable "port" {
+  description = "Port for the DB"
+  default     = null
+  type        = number
+}
+
 variable "db_admin_username" {
   description = "Admin username for the DB"
   default     = "admin"
   type        = string
+  sensitive   = true
 }
 
 variable "db_admin_password" {
   description = "Admin password for the DB"
   default     = null
   type        = string
+  sensitive   = true
 }
 
 variable "use_prefix" {
@@ -77,12 +85,6 @@ variable "backup_retention_period" {
   description = "Backup retention period"
   default     = 7
   type        = number
-}
-
-variable "enable_http_endpoint" {
-  description = "Enable HTTP endpoint"
-  default     = true
-  type        = bool
 }
 
 variable "min_capacity" {
@@ -154,5 +156,87 @@ variable "preferred_backup_window" {
 variable "preferred_maintenance_window" {
   description = "Preferred maintenance window"
   default     = "sun:05:00-sun:06:00" # UTC, 01:00-02:00 ET
+  type        = string
+}
+
+variable "use_proxy" {
+  description = "Use RDS proxy"
+  default     = false
+  type        = bool
+}
+
+variable "proxy_name" {
+  description = "Name of the RDS proxy. If null, will default to `local.name`."
+  default     = null
+  type        = string
+}
+
+variable "proxy_debug_logging" {
+  description = "Enable debug logging for RDS proxy"
+  default     = false
+  type        = bool
+}
+
+variable "proxy_engine_family" {
+  description = "Engine family for RDS proxy"
+  default     = "MYSQL"
+  type        = string
+  validation {
+    condition     = contains(["MYSQL", "POSTGRESQL"], var.proxy_engine_family)
+    error_message = "The engine family must be either MYSQL or POSTGRESQL."
+  }
+}
+
+variable "proxy_idle_client_timeout" {
+  description = "Idle client timeout for RDS proxy"
+  default     = 1800
+  type        = number
+}
+
+variable "proxy_require_tls" {
+  description = "Require TLS for RDS proxy"
+  default     = false
+  type        = bool
+}
+
+variable "proxy_kms_key_id" {
+  description = "KMS key ID for RDS proxy. By default, uses the alias for the account's default KMS key for Secrets Manager."
+  default     = "alias/aws/secretsmanager"
+  type        = string
+}
+
+variable "proxy_username" {
+  description = "Username for RDS proxy"
+  default     = null
+  type        = string
+  sensitive   = true
+}
+
+variable "proxy_password" {
+  description = "Password for RDS proxy"
+  default     = null
+  type        = string
+  sensitive   = true
+}
+
+variable "proxy_iam_auth" {
+  description = "Enable IAM authentication for RDS proxy"
+  default     = "DISABLED"
+  type        = string
+  validation {
+    condition     = contains(["DISABLED", "REQUIRED"], var.proxy_iam_auth)
+    error_message = "The IAM authentication setting must be either DISABLED or REQUIRED."
+  }
+}
+
+variable "egress_cidr_blocks" {
+  description = "List of CIDR blocks to assign to the egress rule of the security group. If null, `egress_security_group_ids` must be used."
+  default     = ["10.0.0.0/8"]
+  type        = list(string)
+}
+
+variable "egress_source_sg_id" {
+  description = "List of security group ID to assign to the egress rule of the security group. If null, `egress_cidr_blocks` must be used."
+  default     = null
   type        = string
 }

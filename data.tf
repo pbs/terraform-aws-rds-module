@@ -33,3 +33,5 @@ data "aws_rds_engine_version" "engine_version" {
   engine             = var.engine
   preferred_versions = var.engine_preferred_versions
 }
+
+data "aws_region" "current" {}

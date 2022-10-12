@@ -24,3 +24,8 @@ output "sg_id" {
   description = "Security group ID for DB"
   value       = module.rds.sg_id
 }
+
+output "lambda_name" {
+  description = "Name of the Lambda"
+  value       = module.lambda.name
+}

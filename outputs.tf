@@ -6,6 +6,7 @@ output "name" {
 output "db_admin_username" {
   description = "Admin username for DB"
   value       = var.db_admin_username
+  sensitive   = true
 }
 
 output "db_admin_password" {
@@ -15,11 +16,16 @@ output "db_admin_password" {
 }
 
 output "db_cluster_dns" {
-  description = "DB Cluster private DNS record"
-  value       = var.create_dns ? aws_route53_record.dns_record[0].fqdn : aws_rds_cluster.db.endpoint
+  description = "Private DNS record for the DB Cluster endpoint (if create_dns is true, otherwise the endpoint itself)"
+  value       = local.db_cluster_dns
+}
+
+output "db_cluster_reader_dns" {
+  description = "Private DNS record for the DB Cluster reader endpoint (if create_dns is true, otherwise the endpoint itself)"
+  value       = local.db_cluster_reader_dns
 }
 
 output "sg_id" {
   description = "Security group ID for DB"
-  value       = aws_security_group.sg.id
+  value       = local.sg_id
 }
