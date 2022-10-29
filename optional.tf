@@ -252,3 +252,9 @@ variable "snapshot_identifier" {
   default     = null
   type        = string
 }
+
+variable "db_cluster_parameter_group_name" {
+  description = "DB cluster parameter group name"
+  default     = null
+  type        = string
+}

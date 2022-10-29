@@ -7,7 +7,7 @@
 Use this URL for the source of the module. See the usage examples below for more details.
 
 ```hcl
-github.com/pbs/terraform-aws-rds-module?ref=0.2.0
+github.com/pbs/terraform-aws-rds-module?ref=x.y.z
 ```
 
 ### Alternative Installation Methods
@@ -28,7 +28,7 @@ Integrate this module like so:
 
 ```hcl
 module "rds" {
-  source = "github.com/pbs/terraform-aws-rds-module?ref=0.2.0"
+  source = "github.com/pbs/terraform-aws-rds-module?ref=x.y.z"
 
   # Required Parameters
   private_hosted_zone = "example.local"
@@ -47,7 +47,7 @@ module "rds" {
 
 If this repo is added as a subtree, then the version of the module should be close to the version shown here:
 
-`0.2.0`
+`x.y.z`
 
 Note, however that subtrees can be altered as desired within repositories.
 
@@ -125,6 +125,7 @@ No modules.
 | <a name="input_create_dns"></a> [create\_dns](#input\_create\_dns) | Whether to create a DNS record | `bool` | `true` | no |
 | <a name="input_db_admin_password"></a> [db\_admin\_password](#input\_db\_admin\_password) | Admin password for the DB | `string` | `null` | no |
 | <a name="input_db_admin_username"></a> [db\_admin\_username](#input\_db\_admin\_username) | Admin username for the DB | `string` | `"admin"` | no |
+| <a name="input_db_cluster_parameter_group_name"></a> [db\_cluster\_parameter\_group\_name](#input\_db\_cluster\_parameter\_group\_name) | DB cluster parameter group name | `string` | `null` | no |
 | <a name="input_deletion_protection"></a> [deletion\_protection](#input\_deletion\_protection) | Deletion protection | `bool` | `true` | no |
 | <a name="input_dns_ttl"></a> [dns\_ttl](#input\_dns\_ttl) | TTL for DNS record | `number` | `300` | no |
 | <a name="input_egress_cidr_blocks"></a> [egress\_cidr\_blocks](#input\_egress\_cidr\_blocks) | List of CIDR blocks to assign to the egress rule of the security group. If null, `egress_security_group_ids` must be used. | `list(string)` | <pre>[<br>  "10.0.0.0/8"<br>]</pre> | no |
