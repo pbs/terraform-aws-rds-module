@@ -5,6 +5,8 @@ resource "aws_rds_cluster_instance" "writer" {
   apply_immediately  = var.apply_immediately
   engine             = var.engine
   engine_version     = local.engine_version
+
+  tags = local.tags
 }
 
 resource "aws_rds_cluster_instance" "reader" {
@@ -15,4 +17,6 @@ resource "aws_rds_cluster_instance" "reader" {
   apply_immediately  = var.apply_immediately
   engine             = var.engine
   engine_version     = local.engine_version
+
+  tags = local.tags
 }
