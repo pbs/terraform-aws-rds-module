@@ -53,8 +53,18 @@ variable "engine_mode" {
   default     = "provisioned"
   type        = string
   validation {
-    condition     = var.engine_mode != "serverless"
-    error_message = "This module does not support Aurora Serverless v1. Please switch to Aurora Serverless v2 instead by leaving this value set to the default value."
+    condition     = var.engine_mode == "provisioned" || var.engine_mode == "serverless"
+    error_message = "This module supports only Aurora provisioned or Serverless v2. Please set engine_mode to 'serverless' for Serverless v2 or 'provisioned' for provisioned mode."
+  }
+}
+
+variable "engine_version" {
+  description = "Engine version of the RDS cluster"
+  default     = "14.6" # Use a valid version for Serverless v2
+  type        = string
+  validation {
+    condition     = (var.engine_version >= "13.7" && var.engine_version <= "13.7") || (var.engine_version >= "14" && var.engine_version <= "15")
+    error_message = "Ensure the engine version is compatible with Aurora PostgreSQL versions that support Serverless v2 (>= 13.7 or 14.x)."
   }
 }
 
