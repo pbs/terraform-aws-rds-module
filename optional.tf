@@ -68,12 +68,6 @@ variable "engine_version" {
   }
 }
 
-variable "engine_version" {
-  description = "Engine version of the RDS cluster. If null, one will be looked up based on preferred versions."
-  default     = null
-  type        = string
-}
-
 variable "engine_preferred_versions" {
   description = "Engine preferred versions of the RDS cluster"
   default     = ["8.0.mysql_aurora.3.02.0"]
