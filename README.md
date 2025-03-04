@@ -166,10 +166,10 @@ No modules.
 
 | Name | Description |
 |------|-------------|
-| <a name="output_administration_sg_id"></a> [administration\_sg\_id](#output\_administration\_sg\_id) | The security group id for performing administrative tasks on the database. If use\_proxy is false, this is the same as sg\_id |
+| <a name="output_admin_sg_id"></a> [admin\_sg\_id](#output\_admin\_sg\_id) | The security group id for performing administrative tasks on the database. If use\_proxy is false, this is the same as sg\_id |
+| <a name="output_db_admin_dns"></a> [db\_admin\_dns](#output\_db\_admin\_dns) | DNS endpoint for performing administrative tasks on the database, i.e. the non-proxy writer endpoint for the cluster |
 | <a name="output_db_admin_password"></a> [db\_admin\_password](#output\_db\_admin\_password) | Admin password for DB |
 | <a name="output_db_admin_username"></a> [db\_admin\_username](#output\_db\_admin\_username) | Admin username for DB |
-| <a name="output_db_administration_dns"></a> [db\_administration\_dns](#output\_db\_administration\_dns) | DNS endpoint for performing administrative tasks on the database, i.e. the non-proxy writer endpoint for the cluster |
 | <a name="output_db_cluster_dns"></a> [db\_cluster\_dns](#output\_db\_cluster\_dns) | Private DNS record for the DB Cluster endpoint (if create\_dns is true, otherwise the endpoint itself) |
 | <a name="output_db_cluster_reader_dns"></a> [db\_cluster\_reader\_dns](#output\_db\_cluster\_reader\_dns) | Private DNS record for the DB Cluster reader endpoint (if create\_dns is true, otherwise the endpoint itself) |
 | <a name="output_name"></a> [name](#output\_name) | Name of the DB |
