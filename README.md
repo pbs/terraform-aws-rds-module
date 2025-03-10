@@ -7,7 +7,7 @@
 Use this URL for the source of the module. See the usage examples below for more details.
 
 ```hcl
-github.com/pbs/terraform-aws-rds-module?ref=1.0.7
+github.com/pbs/terraform-aws-rds-module?ref=x.y.z
 ```
 
 ### Alternative Installation Methods
@@ -28,7 +28,7 @@ Integrate this module like so:
 
 ```hcl
 module "rds" {
-  source = "github.com/pbs/terraform-aws-rds-module?ref=1.0.7"
+  source = "github.com/pbs/terraform-aws-rds-module?ref=x.y.z"
 
   # Required Parameters
   private_hosted_zone = "example.local"
@@ -47,7 +47,7 @@ module "rds" {
 
 If this repo is added as a subtree, then the version of the module should be close to the version shown here:
 
-`1.0.7`
+`x.y.z`
 
 Note, however that subtrees can be altered as desired within repositories.
 
@@ -166,9 +166,11 @@ No modules.
 
 | Name | Description |
 |------|-------------|
+| <a name="output_admin_sg_id"></a> [admin\_sg\_id](#output\_admin\_sg\_id) | The security group id for performing administrative tasks on the database. If use\_proxy is false, this is the same as sg\_id |
+| <a name="output_db_admin_dns"></a> [db\_admin\_dns](#output\_db\_admin\_dns) | DNS endpoint for performing administrative tasks on the database, i.e. the non-proxy writer endpoint for the cluster |
 | <a name="output_db_admin_password"></a> [db\_admin\_password](#output\_db\_admin\_password) | Admin password for DB |
 | <a name="output_db_admin_username"></a> [db\_admin\_username](#output\_db\_admin\_username) | Admin username for DB |
 | <a name="output_db_cluster_dns"></a> [db\_cluster\_dns](#output\_db\_cluster\_dns) | Private DNS record for the DB Cluster endpoint (if create\_dns is true, otherwise the endpoint itself) |
 | <a name="output_db_cluster_reader_dns"></a> [db\_cluster\_reader\_dns](#output\_db\_cluster\_reader\_dns) | Private DNS record for the DB Cluster reader endpoint (if create\_dns is true, otherwise the endpoint itself) |
 | <a name="output_name"></a> [name](#output\_name) | Name of the DB |
-| <a name="output_sg_id"></a> [sg\_id](#output\_sg\_id) | Security group ID for DB |
+| <a name="output_sg_id"></a> [sg\_id](#output\_sg\_id) | Security group ID for DB. If use\_proxy is true, this is the proxy SG, otherwise it's the cluster's security group |

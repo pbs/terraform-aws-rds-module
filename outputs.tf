@@ -25,7 +25,17 @@ output "db_cluster_reader_dns" {
   value       = local.db_cluster_reader_dns
 }
 
+output "db_admin_dns" {
+  description = "DNS endpoint for performing administrative tasks on the database, i.e. the non-proxy writer endpoint for the cluster"
+  value       = aws_rds_cluster.db.endpoint
+}
+
 output "sg_id" {
-  description = "Security group ID for DB"
+  description = "Security group ID for DB. If use_proxy is true, this is the proxy SG, otherwise it's the cluster's security group"
   value       = local.sg_id
+}
+
+output "admin_sg_id" {
+  description = "The security group id for performing administrative tasks on the database. If use_proxy is false, this is the same as sg_id"
+  value       = aws_security_group.sg.id
 }
