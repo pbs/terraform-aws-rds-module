@@ -65,12 +65,12 @@ variable "engine_version" {
 
   validation {
     condition = (
-      can(regex("^14.*$", var.engine_version))                  # PostgreSQL
+      can(regex("^1[4-9]\\..*$", var.engine_version))           # PostgreSQL
       || can(regex("^8.*.mysql_aurora.*$", var.engine_version)) # Aurora MySQL
       || can(regex("^8.*$", var.engine_version))                # MySQL 8
       || can(regex("^5.7$", var.engine_version))                # MySQL 5.7
     )
-    error_message = "Ensure the engine version is compatible with the selected engine type. PostgreSQL versions must be >= 13.7 or between 14.x-15.x. For MySQL, please provide a valid engine version."
+    error_message = "Ensure the engine version is compatible with the selected engine type. PostgreSQL versions must be >= 14.0 or between 14.x-19.x. For MySQL, please provide a valid engine version."
   }
 }
 
