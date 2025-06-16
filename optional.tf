@@ -109,6 +109,12 @@ variable "max_capacity" {
   type        = number
 }
 
+variable "seconds_until_auto_pause" {
+  description = "(Optional) Time, in seconds, before an Aurora DB cluster in provisioned DB engine mode is paused. Valid values are 300 through 86400"
+  default     = 300
+  type        = number
+}
+
 variable "deletion_protection" {
   description = "Deletion protection"
   default     = true
