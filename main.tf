@@ -23,8 +23,9 @@ resource "aws_rds_cluster" "db" {
   skip_final_snapshot = var.skip_final_snapshot
 
   serverlessv2_scaling_configuration {
-    min_capacity = var.min_capacity
-    max_capacity = var.max_capacity
+    min_capacity             = var.min_capacity
+    max_capacity             = var.max_capacity
+    seconds_until_auto_pause = var.min_capacity == 0 ? var.seconds_until_auto_pause : null
   }
 
   # Ignoring these because they trigger nonsense updates

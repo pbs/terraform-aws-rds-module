@@ -21,7 +21,7 @@ resource "aws_security_group_rule" "egress" {
   to_port   = 0
 
   source_security_group_id = var.egress_source_sg_id
-  cidr_blocks              = var.egress_cidr_blocks
+  cidr_blocks              = var.egress_source_sg_id == null ? var.egress_cidr_blocks : null
 }
 
 resource "aws_iam_role" "proxy_role" {
@@ -152,7 +152,7 @@ resource "aws_security_group_rule" "proxy_egress" {
   to_port   = 0
 
   source_security_group_id = var.egress_source_sg_id
-  cidr_blocks              = var.egress_cidr_blocks
+  cidr_blocks              = var.egress_source_sg_id == null ? var.egress_cidr_blocks : null
 }
 
 resource "aws_security_group_rule" "proxy_to_db" {
